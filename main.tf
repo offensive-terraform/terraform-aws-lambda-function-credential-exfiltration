@@ -1,10 +1,10 @@
 resource "aws_lambda_function" "this" {
-  filename      = "payload.zip"
+  filename      = ".terraform/modules/lambda-function-credential-exfiltration/payload.zip"
   function_name = "test"
   role          = var.role_arn
   handler       = "index.handler"
 
-  source_code_hash = filebase64sha256("payload.zip")
+  source_code_hash = filebase64sha256(".terraform/modules/lambda-function-credential-exfiltration/payload.zip")
 
   runtime = "nodejs12.x"
 }
