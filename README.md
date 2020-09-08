@@ -15,6 +15,10 @@ module "lambda-function-credential-exfiltration" {
 
     role_arn = "arn:aws:iam::000000000000:role/lambda-role-name"
 }
+
+output "lambda_credential" {
+  value = module.lambda-function-credential-exfiltration.lambda_credential
+}
 ```
 ## Author
 Module managed by https://github.com/iganbold
