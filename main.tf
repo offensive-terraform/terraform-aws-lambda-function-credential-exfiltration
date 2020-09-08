@@ -1,8 +1,3 @@
-provider "aws" {
-  region  = "us-east-1"
-  profile = "terraform"
-}
-
 resource "aws_lambda_function" "this" {
   filename      = "payload.zip"
   function_name = "test"
