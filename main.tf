@@ -1,0 +1,26 @@
+provider "aws" {
+  region  = "us-east-1"
+  profile = "terraform"
+}
+
+resource "aws_lambda_function" "this" {
+  filename      = "payload.zip"
+  function_name = "test"
+  role          = var.role_arn
+  handler       = "index.handler"
+
+  source_code_hash = filebase64sha256("payload.zip")
+
+  runtime = "nodejs12.x"
+}
+
+data "aws_lambda_invocation" "this" {
+  function_name = aws_lambda_function.this.function_name
+
+  input = <<JSON
+  {
+  }
+  JSON
+
+  depends_on = [aws_lambda_function.this]
+}
